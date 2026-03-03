@@ -1,73 +1,57 @@
-let books = [
-  { id: 1, title: "B1", author: "abdellatif", price: 600 },
-  { id: 2, title: "B2", author: "bader", price: 200 }
-];
+import Book from "../models/bookModel.js";
 
-
-export const getAllBooks = (req, res) => {
-  res.json(books);
+// GET all books
+export const getAllBooks = async (req, res) => {
+  try {
+    const books = await Book.find();
+    res.json(books);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
+// GET book by ID
+export const getBookById = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
 
-export const getBookById = (req, res) => {
-  const id = parseInt(req.params.id);
-  const book = books.find(b => b.id === id);
+    if (!book) {
+      return res.status(404).json({ message: "Book not found" });
+    }
 
-  if (!book) {
-    return res.status(404).json({ message: "not found" });
+    res.json(book);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-
-  res.json(book);
 };
 
+// CREATE book
+export const createBook = async (req, res) => {
+  try {
+    const newBook = new Book({
+      title: req.body.title,
+      author: req.body.author,
+      price: req.body.price
+    });
 
-export const createBook = (req, res) => {
-  const { title, author, price } = req.body;
-
-  if (!title || !author || !price) {
-    return res.status(400).json({ message: "Missing fields" });
+    const savedBook = await newBook.save();
+    res.status(201).json(savedBook);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
   }
-
-  const newBook = {
-    id: books.length + 1,
-    title,
-    author,
-    price
-  };
-
-  books.push(newBook);
-
-  res.status(201).json(newBook);
 };
 
+// DELETE book
+export const deleteBook = async (req, res) => {
+  try {
+    const deletedBook = await Book.findByIdAndDelete(req.params.id);
 
-export const updateBook = (req, res) => {
-  const id = parseInt(req.params.id);
-  const book = books.find(b => b.id === id);
+    if (!deletedBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
 
-  if (!book) {
-    return res.status(404).json({ message: "not found" });
+    res.json({ message: "Book deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-
-  const { title, author, price } = req.body;
-
-  if (title) book.title = title;
-  if (author) book.author = author;
-  if (price) book.price = price;
-
-  res.json(book);
-};
-
-
-export const deleteBook = (req, res) => {
-  const id = parseInt(req.params.id);
-  const index = books.findIndex(b => b.id === id);
-
-  if (index === -1) {
-    return res.status(404).json({ message: " not found" });
-  }
-
-  books.splice(index, 1);
-
-  res.json({ message: "Book deleted" });
 };
