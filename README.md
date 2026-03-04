@@ -154,6 +154,4 @@ Base URL: `http://localhost:5000/api/books`
 }
 ```
 
-## Auteur
 
-Projet realise par **abdellatif** dans le cadre d'un TP Node.js / Express.
