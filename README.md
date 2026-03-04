@@ -110,23 +110,24 @@ Base URL: `http://localhost:5000/api/books`
 
 ### 1) Structure du projet (VS Code)
 
-![Structure du projet](docs/screenshots/01-structure-vscode.png)
+<img width="1959" height="1122" alt="1" src="https://github.com/user-attachments/assets/3b9987b9-026f-4ba6-a8d5-45d57f2c95e5" />
+
 
 ### 2) GET /api/books (Postman)
 
-![GET all books](docs/screenshots/02-get-books-postman.png)
+<img width="2559" height="1347" alt="2" src="https://github.com/user-attachments/assets/9186295b-b3ea-4991-b841-d06ad7d1ab25" />
 
 ### 3) POST /api/books (Postman)
 
-![POST create book](docs/screenshots/03-post-book-postman.png)
+<img width="2559" height="1345" alt="3" src="https://github.com/user-attachments/assets/e8f0f4dc-135f-4040-bed7-07bc4cc13ba7" />
 
 ### 4) DELETE /api/books/:id (Postman)
 
-![DELETE book](docs/screenshots/04-delete-book-postman.png)
+<img width="2559" height="1348" alt="4" src="https://github.com/user-attachments/assets/8e1539b1-871d-41b6-9ffe-0c34ccf8ea1d" />
 
 ### 5) Verification dans MongoDB Compass
 
-![MongoDB Compass](docs/screenshots/05-mongodb-compass.png)
+<img width="2554" height="1329" alt="5" src="https://github.com/user-attachments/assets/b01a9a38-f95f-4af1-a69d-447a3c075e2a" />
 
 ## Exemple de reponses
 
